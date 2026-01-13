@@ -1,0 +1,112 @@
+/**
+ * PrivacyGuard DNS - ESLint Configuration
+ * 
+ * Modern ESLint configuration with Airbnb-style rules
+ * optimized for ES2022+ JavaScript development.
+ */
+
+{
+    "env": {
+        "browser": true,
+        "es2022": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "globalReturn": false,
+            "impliedStrict": true,
+            "jsx": false
+        }
+    },
+    "plugins": [
+        "import"
+    ],
+    "rules": {
+        // Error rules
+        "no-console": "warn",
+        "no-alert": "error",
+        "no-debugger": "error",
+        "no-var": "error",
+        "no-eval": "error",
+        "no-new-func": "error",
+        "no-implicit-globals": "error",
+        "no-restricted-globals": ["error", "event", "fdescribe", "fit"],
+        
+        // Best practices
+        "array-callback-return": "error",
+        "consistent-return": "error",
+        "curly": ["error", "all"],
+        "default-case": "error",
+        "eqeqeq": ["error", "always"],
+        "no-else-return": "error",
+        "no-empty-function": ["error", { "allow": ["arrowFunctions"] }],
+        "no-multi-spaces": "error",
+        "no-unneeded-ternary": "error",
+        "prefer-arrow-callback": "error",
+        "prefer-const": "error",
+        "prefer-destructuring": ["error", { "object": true, "array": false }],
+        "prefer-spread": "error",
+        "prefer-template": "error",
+        "radix": "error",
+        "yoda": "error",
+        
+        // Spacing and formatting
+        "array-bracket-spacing": ["error", "never"],
+        "block-spacing": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "computed-property-spacing": ["error", "never"],
+        "func-call-spacing": ["error", "never"],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+        "keyword-spacing": ["error", { "before": true, "after": true }],
+        "linebreak-style": ["error", "unix"],
+        "no-trailing-spaces": "error",
+        "object-curly-spacing": ["error", "always"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "semi-spacing": ["error", { "before": false, "after": true }],
+        "space-before-blocks": ["error", "always"],
+        "space-before-function-paren": ["error", { "anonymous": "always", "named": "never" }],
+        "space-infix-ops": "error",
+        "space-unary-ops": ["error", { "words": true, "nonwords": false }],
+        
+        // Import rules
+        "import/first": "error",
+        "import/no-amd": "error",
+        "import/no-webpack-loader-syntax": "error",
+        "import/no-unresolved": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".mjs", ".json"]
+            }
+        },
+        "import/ignore": [
+            "node_modules",
+            "\\.(css|scss|sass|less|svg|png|jpg|jpeg|gif|webp|ico)$"
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["**/*.test.js", "**/*.spec.js"],
+            "env": {
+                "jest": true
+            },
+            "rules": {
+                "no-console": "off",
+                "no-unused-vars": "off"
+            }
+        }
+    ]
+}

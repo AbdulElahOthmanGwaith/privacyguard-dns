@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 350" width="550" height="350">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="dangerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow -->
+    <filter id="glowSuccess" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Shadow -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Main Background -->
+  <rect width="550" height="350" fill="url(#bgGradient)" rx="12"/>
+  
+  <!-- Title Bar -->
+  <rect width="550" height="40" fill="#0f172a" rx="12"/>
+  <rect y="28" width="550" height="12" fill="#0f172a"/>
+  
+  <!-- Window Controls -->
+  <circle cx="25" cy="20" r="6" fill="#ef4444"/>
+  <circle cx="45" cy="20" r="6" fill="#f59e0b"/>
+  <circle cx="65" cy="20" r="6" fill="#10b981"/>
+  
+  <!-- Title -->
+  <text x="275" y="25" font-family="Arial, sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">
+    PrivacyGuard DNS Dashboard
+  </text>
+  
+  <!-- Main Content Area -->
+  <g transform="translate(20, 55)">
+    
+    <!-- Status Card -->
+    <g transform="translate(0, 0)" filter="url(#cardShadow)">
+      <rect width="240" height="100" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+      
+      <!-- Status Header -->
+      <text x="20" y="25" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">
+        حالة الحماية
+      </text>
+      
+      <!-- Protected Badge -->
+      <g transform="translate(15, 35)" filter="url(#glowSuccess)">
+        <rect x="0" y="0" width="90" height="24" rx="12" fill="url(#successGradient)"/>
+        <circle cx="15" cy="12" r="5" fill="#fff"/>
+        <path d="M13 12 L14.5 13.5 L17 10.5" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+        <text x="28" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">
+          محمي
+        </text>
+      </g>
+      
+      <!-- Stats -->
+      <g transform="translate(15, 70)">
+        <text x="0" y="0" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f8fafc">
+          1,247,853
+        </text>
+        <text x="0" y="18" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">
+          إعلانات محجوبة
+        </text>
+      </g>
+    </g>
+    
+    <!-- Server Info Card -->
+    <g transform="translate(260, 0)" filter="url(#cardShadow)">
+      <rect width="250" height="100" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+      
+      <!-- Server Header -->
+      <text x="20" y="25" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8">
+        خادم DNS
+      </text>
+      
+      <!-- Server IP -->
+      <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="150" height="30" rx="6" fill="#1e293b"/>
+        <text x="10" y="20" font-family="monospace" font-size="12" fill="#10b981">
+          94.140.14.14
+        </text>
+        <g transform="translate(175, 8)">
+          <rect width="55" height="18" rx="9" fill="#3b82f6" opacity="0.3"/>
+          <text x="27" y="13" font-family="Arial, sans-serif" font-size="9" fill="#3b82f6" text-anchor="middle">
+            IPv4
+          </text>
+        </g>
+      </g>
+      
+      <!-- Secondary IP -->
+      <g transform="translate(15, 75)">
+        <rect x="0" y="0" width="150" height="18" rx="6" fill="#1e293b"/>
+        <text x="10" y="13" font-family="monospace" font-size="10" fill="#64748b">
+          94.140.15.15
+        </text>
+      </g>
+    </g>
+    
+    <!-- Stats Chart -->
+    <g transform="translate(0, 115)" filter="url(#cardShadow)">
+      <rect width="510" height="100" rx="8" fill="#0f172a"/>
+      
+      <!-- Chart Title -->
+      <text x="20" y="25" font-family="Arial, sans-serif" font-size="12" fill="#f8fafc" font-weight="bold">
+        الإحصائيات الأسبوعية
+      </text>
+      
+      <!-- Chart Area -->
+      <g transform="translate(20, 45)">
+        <!-- Grid Lines -->
+        <line x1="0" y1="0" x2="0" y2="45" stroke="#334155" stroke-width="1"/>
+        <line x1="0" y1="45" x2="470" y2="45" stroke="#334155" stroke-width="1"/>
+        <line x1="0" y1="15" x2="470" y2="15" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+        <line x1="0" y1="30" x2="470" y2="30" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+        
+        <!-- Chart Line -->
+        <polyline 
+          points="0,40 30,35 60,38 90,25 120,28 150,20 180,22 210,15 240,18 270,10 300,12 330,8 360,5 390,8 420,3 450,5" 
+          fill="none" 
+          stroke="url(#successGradient)" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+        
+        <!-- Data Points -->
+        <circle cx="0" cy="40" r="3" fill="#10b981"/>
+        <circle cx="90" cy="25" r="3" fill="#10b981"/>
+        <circle cx="180" cy="22" r="3" fill="#10b981"/>
+        <circle cx="270" cy="10" r="3" fill="#10b981"/>
+        <circle cx="360" cy="5" r="3" fill="#10b981"/>
+        <circle cx="450" cy="5" r="3" fill="#10b981"/>
+      </g>
+    </g>
+    
+    <!-- Blocked Domains List -->
+    <g transform="translate(0, 230)" filter="url(#cardShadow)">
+      <rect width="510" height="105" rx="8" fill="#0f172a"/>
+      
+      <!-- List Title -->
+      <text x="20" y="28" font-family="Arial, sans-serif" font-size="12" fill="#f8fafc" font-weight="bold">
+        آخر المواقع المحجوبة
+      </text>
+      
+      <!-- Domain Items -->
+      <g transform="translate(20, 45)">
+        <!-- Item 1 -->
+        <g>
+          <rect x="0" y="0" width="470" height="22" rx="4" fill="#1e293b"/>
+          <circle cx="12" cy="11" r="5" fill="#ef4444" opacity="0.3"/>
+          <text x="12" y="15" font-family="Arial, sans-serif" font-size="10" fill="#ef4444" text-anchor="middle">
+            ✕
+          </text>
+          <text x="28" y="15" font-family="monospace" font-size="10" fill="#94a3b8">
+            google-analytics.com
+          </text>
+          <text x="440" y="15" font-family="Arial, sans-serif" font-size="9" fill="#10b981">
+            محجوب
+          </text>
+        </g>
+        
+        <!-- Item 2 -->
+        <g transform="translate(0, 28)">
+          <rect x="0" y="0" width="470" height="22" rx="4" fill="#1e293b"/>
+          <circle cx="12" cy="11" r="5" fill="#ef4444" opacity="0.3"/>
+          <text x="12" y="15" font-family="Arial, sans-serif" font-size="10" fill="#ef4444" text-anchor="middle">
+            ✕
+          </text>
+          <text x="28" y="15" font-family="monospace" font-size="10" fill="#94a3b8">
+            doubleclick.net
+          </text>
+          <text x="440" y="15" font-family="Arial, sans-serif" font-size="9" fill="#10b981">
+            محجوب
+          </text>
+        </g>
+        
+        <!-- Item 3 -->
+        <g transform="translate(0, 56)">
+          <rect x="0" y="0" width="470" height="22" rx="4" fill="#1e293b"/>
+          <circle cx="12" cy="11" r="5" fill="#ef4444" opacity="0.3"/>
+          <text x="12" y="15" font-family="Arial, sans-serif" font-size="10" fill="#ef4444" text-anchor="middle">
+            ✕
+          </text>
+          <text x="28" y="15" font-family="monospace" font-size="10" fill="#94a3b8">
+            facebook.com/tr
+          </text>
+          <text x="440" y="15" font-family="Arial, sans-serif" font-size="9" fill="#10b981">
+            محجوب
+          </text>
+        </g>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Accessibility -->
+  <title>PrivacyGuard DNS Dashboard Preview</title>
+  <desc>معاينة لوحة تحكم PrivacyGuard DNS تعرض حالة الحماية والإحصائيات والمواقع المحجوبة</desc>
+</svg>

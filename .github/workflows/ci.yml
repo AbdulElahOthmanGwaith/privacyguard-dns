@@ -1,0 +1,86 @@
+# ملف سير عمل التكامل المستمر (CI)
+# يتفعيل هذا الملف تلقائياً عند كل دفع للتغييرات إلى الفرع الرئيسي
+name: التكامل المستمر
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  اختبار-الوحدة:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name:_checkout-الكود
+      uses: actions/checkout@v4
+
+    - name: إعداد-Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: تثبيت-التبعيات
+      run: npm ci
+
+    - name: تشغيل-الاختبارات
+      run: npm test --if-present
+
+    - name: رفع-تقرير-التغطية
+      if: always()
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage/lcov.info
+        fail_ci_if_error: false
+
+  فحص-الكود:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout-الكود
+      uses: actions/checkout@v4
+
+    - name: إعداد-Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: تثبيت-التبعيات
+      run: npm ci
+
+    - name: فحص-ESLint
+      run: npm run lint
+
+    - name: فحص-Prettier
+      run: npm run format:check
+
+  بناء-التطبيق:
+    runs-on: ubuntu-latest
+    needs: [اختبار-الوحدة, فحص-الكود]
+
+    steps:
+    - name: checkout-الكود
+      uses: actions/checkout@v4
+
+    - name: إعداد-Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: تثبيت-التبعيات
+      run: npm ci
+
+    - name: بناء-التطبيق
+      run: npm run build
+
+    - name: رفع-ملفات-البناء
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
+        retention-days: 7

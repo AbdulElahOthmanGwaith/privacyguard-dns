@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="خدمة DNS مجانية لحظر الإعلانات والتتبع - تصفح الإنترنت بشكل أسرع وأمان">
+    <meta name="theme-color" content="#0F766E">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="PrivacyGuard DNS - خدمة DNS مجانية لحظر الإعلانات">
+    <meta property="og:description" content="خدمة DNS مجانية وسريعة لحظر الإعلانات والتتبع على جميع أجهزتك">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://privacyguard.dns">
+    
+    <title>PrivacyGuard DNS - خدمة حارس الخصوصية لحظر الإعلانات</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="src/css/main.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='18' stroke='%230F766E' stroke-width='2' fill='none'/><path d='M12 20L18 26L28 14' stroke='%230F766E' stroke-width='3' stroke-linecap='round' fill='none'/></svg>">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">اذهب إلى المحتوى الرئيسي</a>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container" role="navigation" aria-label="التنقل الرئيسي">
+            <a href="#" class="logo" aria-label="الصفحة الرئيسية - PrivacyGuard">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 20L18 26L28 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">PrivacyGuard</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" data-i18n="nav.home">الرئيسية</a></li>
+                <li><a href="#services" data-i18n="nav.services">الخدمات</a></li>
+                <li><a href="#config" data-i18n="nav.config">التكوين</a></li>
+                <li><a href="#stats" data-i18n="nav.stats">الإحصائيات</a></li>
+                <li><a href="#faq" data-i18n="nav.faq">الأسئلة الشائعة</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="lang-switch" id="langSwitch" aria-label="تبديل اللغة">
+                    <span class="lang-current">العربية</span>
+                    <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </button>
+                <a href="#contact" class="btn btn-primary" data-i18n="nav.contact">اتصل بنا</a>
+            </div>
+            <button class="mobile-menu" id="mobileMenu" aria-label="فتح القائمة" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span aria-hidden="true">🛡️</span>
+                        <span data-i18n="hero.badge">حماية مجانية 100%</span>
+                    </div>
+                    <h1 id="hero-title" class="hero-title" data-i18n="hero.title">تصفح الإنترنت بدون إعلانات</h1>
+                    <p class="hero-desc" data-i18n="hero.description">خدمة DNS مجانية وسريعة لحظر الإعلانات والتتبع على جميع أجهزتك. تمتع بتجربة تصفح أنظف وأسرع وأكثر خصوصية.</p>
+                    
+                    <!-- DNS Configuration Box -->
+                    <div class="dns-box" role="group" aria-label="عناوين خوادم DNS">
+                        <div class="dns-header">
+                            <svg class="dns-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                            <span data-i18n="hero.dnsServers">خوادم DNS الموصى بها</span>
+                        </div>
+                        <div class="dns-addresses">
+                            <button class="dns-item" type="button" onclick="window.copyDNS('94.140.14.14')" aria-label="نسخ IPv4 94.140.14.14">
+                                <span class="dns-label">IPv4</span>
+                                <code class="dns-value">94.140.14.14</code>
+                                <span class="copy-btn" data-i18n="hero.copy">نسخ</span>
+                            </button>
+                            <button class="dns-item" type="button" onclick="window.copyDNS('94.140.15.15')" aria-label="نسخ IPv4 94.140.15.15">
+                                <span class="dns-label">IPv4</span>
+                                <code class="dns-value">94.140.15.15</code>
+                                <span class="copy-btn" data-i18n="hero.copy">نسخ</span>
+                            </button>
+                            <button class="dns-item" type="button" onclick="window.copyDNS('2a10:50c0::ad1:ff')" aria-label="نسخ IPv6 2a10:50c0::ad1:ff">
+                                <span class="dns-label">IPv6</span>
+                                <code class="dns-value">2a10:50c0::ad1:ff</code>
+                                <span class="copy-btn" data-i18n="hero.copy">نسخ</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="#config" class="btn btn-primary btn-lg" data-i18n="hero.startGuide">ابدأ التكوين</a>
+                        <a href="#services" class="btn btn-secondary btn-lg" data-i18n="hero.learnMore">اعرف المزيد</a>
+                    </div>
+                    
+                    <div class="hero-features">
+                        <div class="feature-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                            <span data-i18n="hero.fastSpeed">سرعة فائقة</span>
+                        </div>
+                        <div class="feature-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                            <span data-i18n="hero.secure">آمن ومشفّر</span>
+                        </div>
+                        <div class="feature-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4"/>
+                                <path d="M12 8h.01"/>
+                            </svg>
+                            <span data-i18n="hero.free">مجاني تماماً</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-card">
+                        <div class="visual-header">
+                            <div class="visual-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="visual-content">
+                            <div class="blocked-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M15 9l-6 6"/>
+                                    <path d="M9 9l6 6"/>
+                                </svg>
+                                <span>ad.example.com</span>
+                                <span class="blocked-badge" data-i18n="hero.blocked">محجوب</span>
+                            </div>
+                            <div class="blocked-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M15 9l-6 6"/>
+                                    <path d="M9 9l6 6"/>
+                                </svg>
+                                <span>tracker.net</span>
+                                <span class="blocked-badge" data-i18n="hero.blocked">محجوب</span>
+                            </div>
+                            <div class="allowed-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <path d="M22 4L12 14.01l-3-3"/>
+                                </svg>
+                                <span>example.com</span>
+                                <span class="allowed-badge" data-i18n="hero.allowed">مسموح</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section" aria-label="إحصائيات الخدمة">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number" data-count="500000" aria-label="500,000 مستخدم">0</div>
+                        <div class="stat-label" data-i18n="stats.users">مستخدم نشط</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number" data-count="99" aria-label="99%">0</div>
+                        <div class="stat-label">% <span data-i18n="stats.uptime">وقت التشغيل</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number" data-count="15" aria-label="15 مللي ثانية">0</div>
+                        <div class="stat-label"><span data-i18n="stats.latency">زمن الاستجابة</span> ms</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number" data-count="2000000" aria-label="2,000,000">0</div>
+                        <div class="stat-label" data-i18n="stats.blockedAds">إعلان محجوب</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section" aria-labelledby="services-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge" data-i18n="services.badge">خدماتنا</span>
+                    <h2 id="services-title" class="section-title" data-i18n="services.title">حماية شاملة لخصوصيتك</h2>
+                    <p class="section-desc" data-i18n="services.description">نقدم مجموعة متكاملة من الخدمات لحماية تجربتك على الإنترنت من الإعلانات والتتبع والبرمجيات الخبيثة.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title" data-i18n="services.adBlocking">حظر الإعلانات</h3>
+                        <p class="service-desc" data-i18n="services.adBlockingDesc">حظر جميع أنواع الإعلانات بما في ذلك الإعلانات العرضية والفيديوهات والمحتوى التطفلي للحصول على تجربة تصفح نقية.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title" data-i18n="services.antiTracking">مكافحة التتبع</h3>
+                        <p class="service-desc" data-i18n="services.antiTrackingDesc">منع متتبعات النشاط والشبكات الاجتماعية من جمع بياناتك وتتبع سلوكك على الإنترنت.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title" data-i18n="services.malware">حماية من البرمجيات الخبيثة</h3>
+                        <p class="service-desc" data-i18n="services.malwareDesc">حظر المواقع المشبوهة والروابط الخبيثة والفيروسات لحماية أجهزتك من التهديدات الأمنية.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title" data-i18n="services.familyProtection">حماية العائلة</h3>
+                        <p class="service-desc" data-i18n="services.familyProtectionDesc">تصفية المحتوى غير المناسب للأطفال وحمايتهم من الوصول إلى المواقع الضارة.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4"/>
+                                <path d="M12 8h.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title" data-i18n="services.privacyPolicy">سياسة عدم التسجيل</h3>
+                        <p class="service-desc" data-i18n="services.privacyPolicyDesc">نحن لا نسجل بياناتك أو نشاطك على الإنترنت. خصوصيتك هي التزامنا الأول.</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title" data-i18n="services.speedBoost">تسريع التصفح</h3>
+                        <p class="service-desc" data-i18n="services.speedBoostDesc">بفضل التخزين المؤقت الذكي، ستتحمل صفحات الويب بشكل أسرع وتوفر في استهلاك البيانات.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configuration Section -->
+        <section id="config" class="config-section" aria-labelledby="config-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge" data-i18n="config.badge">دليل التكوين</span>
+                    <h2 id="config-title" class="section-title" data-i18n="config.title">إعداد الخدمة على أجهزتك</h2>
+                    <p class="section-desc" data-i18n="config.description">اتبع هذه الخطوات البسيطة لتكوين خدمة DNS على جهازك والبدء بحماية خصوصيتك.</p>
+                </div>
+                
+                <!-- Platform Tabs -->
+                <div class="config-tabs" role="tablist" aria-label="اختر منصة">
+                    <button class="config-tab active" data-platform="windows" role="tab" aria-selected="true" aria-controls="windows-panel">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M20 20l-4-16H8L4 20"/>
+                            <path d="M12 4v16"/>
+                        </svg>
+                        <span>Windows</span>
+                    </button>
+                    <button class="config-tab" data-platform="macos" role="tab" aria-selected="false" aria-controls="macos-panel">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/>
+                            <path d="M10 2c1 .5 2 2 2 5"/>
+                        </svg>
+                        <span>macOS</span>
+                    </button>
+                    <button class="config-tab" data-platform="android" role="tab" aria-selected="false" aria-controls="android-panel">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+                            <path d="M12 2v20"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                        <span>Android</span>
+                    </button>
+                    <button class="config-tab" data-platform="ios" role="tab" aria-selected="false" aria-controls="ios-panel">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                            <path d="M12 18h.01"/>
+                        </svg>
+                        <span>iOS</span>
+                    </button>
+                    <button class="config-tab" data-platform="linux" role="tab" aria-selected="false" aria-controls="linux-panel">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6"/>
+                            <path d="M12 17v6"/>
+                            <path d="M4.22 4.22l4.24 4.24"/>
+                            <path d="M15.54 15.54l4.24 4.24"/>
+                            <path d="M1 12h6"/>
+                            <path d="M17 12h6"/>
+                            <path d="M4.22 19.78l4.24-4.24"/>
+                            <path d="M15.54 8.46l4.24-4.24"/>
+                        </svg>
+                        <span>Linux</span>
+                    </button>
+                    <button class="config-tab" data-platform="router" role="tab" aria-selected="false" aria-controls="router-panel">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="2" y="6" width="20" height="12" rx="2"/>
+                            <path d="M6 10v4"/>
+                            <path d="M10 10v4"/>
+                            <path d="M14 10v4"/>
+                            <path d="M18 10v4"/>
+                            <path d="M8 10V8a4 4 0 0 1 8 0v2"/>
+                        </svg>
+                        <span data-i18n="config.router">راوتر</span>
+                    </button>
+                </div>
+                
+                <!-- Configuration Panels -->
+                <div class="config-content">
+                    <!-- Windows Panel -->
+                    <div class="config-panel active" id="windows-panel" data-platform="windows" role="tabpanel">
+                        <div class="config-steps">
+                            <div class="config-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.winStep1Title">افتح إعدادات الشبكة</h4>
+                                    <p data-i18n="config.winStep1Desc">انقر بزر الماوس الأيمن على أيقونة الشبكة في شريط المهام واختر "إعدادات الشبكة والإنترنت".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.winStep2Title">اختر محول الشبكة</h4>
+                                    <p data-i18n="config.winStep2Desc">انتقل إلى "محول الشبكة" وحدد الاتصال النشط (Wi-Fi أو إيثرنت).</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.winStep3Title">خصائص IPv4</h4>
+                                    <p data-i18n="config.winStep3Desc">انقر بزر الماوس الأيمن واختر "خصائص"، ثم انقر نقرًا مزدوجًا على "بروتوكول الإنترنت الإصدار الرابع".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.winStep4Title">أدخل خوادم DNS</h4>
+                                    <p data-i18n="config.winStep4Desc">اختر "استخدام عناوين خادم DNS التالية" وأدخل: <br><code>94.140.14.14</code> و <code>94.140.15.15</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- macOS Panel -->
+                    <div class="config-panel" id="macos-panel" data-platform="macos" role="tabpanel">
+                        <div class="config-steps">
+                            <div class="config-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.macStep1Title">تفضيلات النظام</h4>
+                                    <p data-i18n="config.macStep1Desc">اذهب إلى القائمة ثم "تفضيلات النظام" واختر "شبكة".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.macStep2Title">اختر الاتصال</h4>
+                                    <p data-i18n="config.macStep2Desc">حدد الاتصال النشط من القائمة الجانبية وانقر على "تفاصيل".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.macStep3Title">إعدادات DNS</h4>
+                                    <p data-i18n="config.macStep3Desc">انتقل إلى علامة تبويب "DNS" وانقر على زر الإضافة (+).</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.macStep4Title">أضف الخوادم</h4>
+                                    <p data-i18n="config.macStep4Desc">أضف <code>94.140.14.14</code> و <code>94.140.15.15</code> ثم انقر على "موافق" و"تطبيق".</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Android Panel -->
+                    <div class="config-panel" id="android-panel" data-platform="android" role="tabpanel">
+                        <div class="config-steps">
+                            <div class="config-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.andStep1Title">إعدادات Wi-Fi</h4>
+                                    <p data-i18n="config.andStep1Desc">افتح "الإعدادات" ثم "الشبكة والإنترنت" واختر "Wi-Fi".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.andStep2Title">تعديل الشبكة</h4>
+                                    <p data-i18n="config.andStep2Desc">حدد الشبكة المتصلة وانقر على أيقونة القلم لتعديلها.</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.andStep3Title">خيارات متقدمة</h4>
+                                    <p data-i18n="config.andStep3Desc">مرر للأسفل واختر "خيارات متقدمة" ثم "إعدادات IP".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.andStep4Title">DNS الثابت</h4>
+                                    <p data-i18n="config.andStep4Desc">غيّر الإعداد إلى "ثابت" وأدخل <code>94.140.14.14</code> في حقل DNS.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- iOS Panel -->
+                    <div class="config-panel" id="ios-panel" data-platform="ios" role="tabpanel">
+                        <div class="config-steps">
+                            <div class="config-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.iosStep1Title">الإعدادات</h4>
+                                    <p data-i18n="config.iosStep1Desc">افتح "الإعدادات" وانتقل إلى "Wi-Fi".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.iosStep2Title">معلومات الشبكة</h4>
+                                    <p data-i18n="config.iosStep2Desc">انقر على أيقونة "i" بجانب الشبكة المتصلة.</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.iosStep3Title">تكوين DNS</h4>
+                                    <p data-i18n="config.iosStep3Desc">مرر للأسفل واختر "تكوين DNS" وحدد "يدوي".</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.iosStep4Title">أضف الخادم</h4>
+                                    <p data-i18n="config.iosStep4Desc">احذف الخوادم الحالية وأضف <code>94.140.14.14</code> و <code>94.140.15.15</code>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linux Panel -->
+                    <div class="config-panel" id="linux-panel" data-platform="linux" role="tabpanel">
+                        <div class="config-steps">
+                            <div class="config-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.linStep1Title">تحرير الإعدادات</h4>
+                                    <p data-i18n="config.linStep1Desc">افتح Terminal ونفذ: <code>sudo nano /etc/systemd/resolved.conf</code></p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.linStep2Title">إضافة الخوادم</h4>
+                                    <p data-i18n="config.linStep2Desc">أضف السطر: <code>DNS=94.140.14.14</code> في قسم <code>[Resolve]</code>.</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.linStep3Title">إعادة التشغيل</h4>
+                                    <p data-i18n="config.linStep3Desc">احفظ الملف وأعد تشغيل الخدمة: <code>sudo systemctl restart systemd-resolved</code></p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.linStep4Title">التحقق</h4>
+                                    <p data-i18n="config.linStep4Desc">تحقق من الإعدادات عبر: <code>systemd-resolve --status | grep DNS</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Router Panel -->
+                    <div class="config-panel" id="router-panel" data-platform="router" role="tabpanel">
+                        <div class="config-steps">
+                            <div class="config-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.rouStep1Title">تسجيل الدخول</h4>
+                                    <p data-i18n="config.rouStep1Desc">افتح المتصفح وأدخل عنوان الراوتر (عادةً <code>192.168.1.1</code>) وسجّل الدخول.</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.rouStep2Title">إعدادات الإنترنت</h4>
+                                    <p data-i18n="config.rouStep2Desc">ابحث عن قسم "WAN" أو "إعدادات الإنترنت" في قائمة الراوتر.</p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.rouStep3Title">خوادم DNS</h4>
+                                    <p data-i18n="config.rouStep3Desc">أدخل خوادم DNS المخصصة بدلاً من التلقائية: <code>94.140.14.14</code> و <code>94.140.15.15</code></p>
+                                </div>
+                            </div>
+                            <div class="config-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 data-i18n="config.rouStep4Title">حفظ وإعادة تشغيل</h4>
+                                    <p data-i18n="config.rouStep4Desc">احفظ الإعدادات وأعد تشغيل الراوتر لتفعيل التغييرات.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge" data-i18n="faq.badge">الأسئلة الشائعة</span>
+                    <h2 id="faq-title" class="section-title" data-i18n="faq.title">كل ما تريد معرفته</h2>
+                    <p class="section-desc" data-i18n="faq.description">إجابات على الأسئلة الأكثر شيوعاً حول خدمة DNS وحظر الإعلانات.</p>
+                </div>
+                <div class="faq-list" role="list">
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-i18n="faq.q1">هل خدمة DNS المجانية آمنة للاستخدام؟</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p data-i18n="faq.a1">نعم، خدمات DNS المجانية الموثوقة آمنة تماماً للاستخدام. نحن لا نسجل بياناتك أو نشاطك على الإنترنت، ونستخدم تشفير HTTPS لجميع الاتصالات. تأكد دائماً من اختيار خدمات معروفة وذات سمعة جيدة.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-i18n="faq.q2">هل سيؤثر تغيير DNS على سرعة الإنترنت؟</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p data-i18n="faq.a2">على العكس تماماً! خدمات DNS المحسنة غالباً ما تُسرّع تصفح الإنترنت لأنها تستخدم خوادم قريبة منك وتوفر تخزين مؤقت ذكي. قد تلاحظ تحميلاً أسرع للصفحات وانخفاضاً في زمن الاستجابة.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-i18n="faq.q3">هل يمكنني استخدام DNS مع VPN؟</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p data-i18n="faq.a3">نعم، يمكنك استخدام كلاهما معاً. بعض خدمات VPN توفر خوادم DNS مخصصة يمكنك تفعيلها، أو يمكنك استخدام VPN مع DNS-blocking للحصول على حماية مضاعفة. تأكد من عدم وجود تعارض في الإعدادات.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-i18n="faq.q4">ما الفرق بين DNS لحظر الإعلانات وإضافات المتصفح؟</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p data-i18n="faq.a4">DNS يعمل على مستوى الشبكة لجميع التطبيقات على الجهاز، بينما إضافات المتصفح تعمل فقط داخل المتصفح. DNS لا يستهلك موارد جهازك لأنه يعمل على خوادم خارجية، كما يصعب تجاوزه مقارنةً بالإضافات.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-i18n="faq.q5">ماذا أفعل إذا لم تعمل بعض المواقع؟</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p data-i18n="faq.a5">بعض المواقع قد تستخدم نطاقات إعلانية أساسية لمحتواها. يمكنك إضافة هذه النطاقات إلى قائمة الاستثناءات في إعدادات الخدمة. كما يُنصح بمسح ذاكرة التخزين المؤقتة DNS بعد تغيير الإعدادات.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false">
+                            <span data-i18n="faq.q6">هل الخدمة مجانية مدى الحياة؟</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" hidden>
+                            <p data-i18n="faq.a6">نعم، نقدم خطة مجانية كاملة تغطي احتياجات الاستخدام الشخصي. تتوفر أيضاً خطط مدفوعة للمستخدمين المتقدمين الذين يحتاجون إلى ميزات إضافية مثل الإحصائيات التفصيلية وتخصيص الفلاتر.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <span class="section-badge" data-i18n="contact.badge">اتصل بنا</span>
+                        <h2 id="contact-title" class="section-title" data-i18n="contact.title">هل تحتاج مساعدة؟</h2>
+                        <p class="section-desc" data-i18n="contact.description">فريق الدعم جاهز لمساعدتك في أي وقت. تواصل معنا وسنرد عليك في أقرب وقت ممكن.</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <path d="M22 6l-10 7L2 6"/>
+                                    </svg>
+                                </div>
+                                <div class="method-text">
+                                    <h4>البريد الإلكتروني</h4>
+                                    <p>support@privacyguard.dns</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 16v-4"/>
+                                        <path d="M12 8h.01"/>
+                                    </svg>
+                                </div>
+                                <div class="method-text">
+                                    <h4 data-i18n="contact.supportHours">ساعات الدعم</h4>
+                                    <p>24/7 طوال أيام الأسبوع</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm" aria-label="نموذج الاتصال">
+                        <div class="form-group">
+                            <label for="name" data-i18n="contact.nameLabel">الاسم</label>
+                            <input type="text" id="name" name="name" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="contact.emailLabel">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" data-i18n="contact.subjectLabel">الموضوع</label>
+                            <select id="subject" name="subject">
+                                <option value="general" data-i18n="contact.subject1">استفسار عام</option>
+                                <option value="technical" data-i18n="contact.subject2">مشكلة تقنية</option>
+                                <option value="feedback" data-i18n="contact.subject3">ملاحظات واقتراحات</option>
+                                <option value="business" data-i18n="contact.subject4">تعاون تجاري</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="contact.messageLabel">الرسالة</label>
+                            <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" data-i18n="contact.sendMessage">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" aria-label="الصفحة الرئيسية">
+                        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="logo-text">PrivacyGuard</span>
+                    </a>
+                    <p data-i18n="footer.description">حماية خصوصيتك على الإنترنت من خلال خدمات DNS المتقدمة لحظر الإعلانات والتتبع.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.quickLinks">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#services" data-i18n="nav.services">الخدمات</a></li>
+                        <li><a href="#config" data-i18n="nav.config">التكوين</a></li>
+                        <li><a href="#faq" data-i18n="nav.faq">الأسئلة الشائعة</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">الدعم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.resources">الموارد</h4>
+                    <ul>
+                        <li><a href="docs/CONFIGURATION.md">الوثائق</a></li>
+                        <li><a href="docs/FAQ.md">الأسئلة الشائعة</a></li>
+                        <li><a href="docs/SECURITY.md">الأمان والخصوصية</a></li>
+                        <li><a href="https://github.com/privacyguard/dns">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.connect">تواصل معنا</h4>
+                    <ul>
+                        <li><a href="https://twitter.com/PrivacyGuardDNS" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://github.com/privacyguard/dns" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="mailto:support@privacyguard.dns">الدعم</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PrivacyGuard DNS. <span data-i18n="footer.rights">جميع الحقوق محفوظة.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite" hidden>
+        <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <path d="M22 4L12 14.01l-3-3"/>
+        </svg>
+        <span class="toast-message" data-i18n="misc.copied">تم نسخ العنوان بنجاح!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="src/js/main.js"></script>
+    
+    <!-- Global DNS Copy Function (for inline onclick handlers) -->
+    <script>
+        window.copyDNS = function(ip) {
+            navigator.clipboard.writeText(ip).then(() => {
+                const toast = document.getElementById('toast');
+                if (toast) {
+                    toast.hidden = false;
+                    setTimeout(() => {
+                        toast.hidden = true;
+                    }, 2500);
+                }
+            });
+        };
+    </script>
+</body>
+</html>
