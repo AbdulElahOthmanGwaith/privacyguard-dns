@@ -40,12 +40,10 @@ describe('I18nController', () => {
         // Clear localStorage
         localStorage.clear();
         
-        // Mock document elements
-        document.documentElement = { 
-            lang: '', 
-            dir: '',
-            style: {}
-        };
+        // Reset the real jsdom document elements between tests.
+        document.documentElement.lang = '';
+        document.documentElement.dir = '';
+        document.documentElement.style.cssText = '';
         document.querySelectorAll = jest.fn(() => []);
         document.getElementById = jest.fn(() => null);
         

@@ -29,7 +29,8 @@
     "dev": "webpack serve --mode development --open",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "test": "jest --coverage",
+    "test": "jest tests --coverage --runInBand",
+    "test:browser": "node test.js",
     "test:watch": "jest --watch",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
@@ -81,5 +82,8 @@
     "defaults",
     "not IE 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
 }

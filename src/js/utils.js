@@ -11,7 +11,8 @@
  * @returns {string} Formatted number
  */
 export function formatNumber(number, locale = 'ar') {
-    return new Intl.NumberFormat(locale).format(number);
+    const resolvedLocale = locale === 'ar' ? 'ar-EG' : locale;
+    return new Intl.NumberFormat(resolvedLocale).format(number);
 }
 
 /**
@@ -261,8 +262,8 @@ export function isValidEmail(email) {
  */
 export function isValidUrl(url) {
     try {
-        new URL(url);
-        return true;
+        const parsed = new URL(url);
+        return parsed.protocol === 'http:' || parsed.protocol === 'https:';
     } catch {
         return false;
     }
