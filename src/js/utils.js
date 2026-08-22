@@ -1,6 +1,6 @@
 /**
  * PrivacyGuard DNS - Utility Functions
- * 
+ *
  * Collection of reusable utility functions for common operations.
  */
 
@@ -25,13 +25,13 @@ export function formatBytes(bytes, decimals = 2) {
     if (bytes === 0) {
         return '0 Bytes';
     }
-    
+
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) } ${ sizes[i]}`;
 }
 
 /**
@@ -42,13 +42,13 @@ export function formatBytes(bytes, decimals = 2) {
  */
 export function debounce(func, wait) {
     let timeout;
-    
+
     return function executedFunction(...args) {
         const later = () => {
             clearTimeout(timeout);
             func(...args);
         };
-        
+
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
@@ -62,7 +62,7 @@ export function debounce(func, wait) {
  */
 export function throttle(func, limit) {
     let inThrottle;
-    
+
     return function executedFunction(...args) {
         if (!inThrottle) {
             func(...args);
@@ -89,7 +89,7 @@ export async function copyToClipboard(text) {
         textArea.style.left = '-999999px';
         document.body.appendChild(textArea);
         textArea.select();
-        
+
         try {
             document.execCommand('copy');
             document.body.removeChild(textArea);
@@ -110,11 +110,11 @@ export async function copyToClipboard(text) {
 export function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
-    
+
     if (parts.length === 2) {
         return parts.pop().split(';').shift();
     }
-    
+
     return null;
 }
 
@@ -156,10 +156,12 @@ export function isInViewport(element, threshold = 0) {
     const rect = element.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
     const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-    
-    const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
-    const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
-    
+
+    const verticalInset = rect.height * Math.min(Math.max(threshold, 0), 1);
+    const horizontalInset = rect.width * Math.min(Math.max(threshold, 0), 1);
+    const vertInView = (rect.top + verticalInset <= windowHeight) && ((rect.top + rect.height - verticalInset) >= 0);
+    const horInView = (rect.left + horizontalInset <= windowWidth) && ((rect.left + rect.width - horizontalInset) >= 0);
+
     return vertInView && horInView;
 }
 
@@ -171,7 +173,7 @@ export function isInViewport(element, threshold = 0) {
 export function scrollToElement(element, offset = 0) {
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - offset;
-    
+
     window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
@@ -186,11 +188,11 @@ export function scrollToElement(element, offset = 0) {
 export function parseQueryString(queryString) {
     const params = new URLSearchParams(queryString);
     const result = {};
-    
+
     for (const [key, value] of params) {
         result[key] = value;
     }
-    
+
     return result;
 }
 
@@ -298,12 +300,12 @@ export function lerp(start, end, amt) {
  */
 export function shuffleArray(array) {
     const shuffled = [...array];
-    
+
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    
+
     return shuffled;
 }
 
@@ -367,5 +369,5 @@ export function truncate(str, maxLength) {
     if (str.length <= maxLength) {
         return str;
     }
-    return str.slice(0, maxLength - 3) + '...';
+    return `${str.slice(0, maxLength - 3) }...`;
 }
